@@ -35,7 +35,7 @@ As of December 2015, the project's develop branch using [Maven](https://maven.ap
 
 cp custom-vivo/default-settings.xml custom-vivo/custom-settings.xml
 
-#Using your change the settings to match your Tomcat installation. 
+#Using a text editor, change the settings for the VIVO home directory, Tomcat location, and theme to match your environment. 
 
 #Build and deploy
 
