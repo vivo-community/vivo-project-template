@@ -5,7 +5,7 @@ For a more detailed explanation of setting up the VIVO environment, consult the
 [VIVO version 1.8 installation
 instructions](https://wiki.duraspace.org/display/VIVO/Installing+VIVO+release+1.8).
 
-As of December 2015, the project's develop branch using [Maven](https://maven.apache.org/) for its build tool. Follow the directions below for building your custom VIVO project with Maven. 
+As of December 2015, VIVO uses [Maven](https://maven.apache.org/) for its build tool. Follow the directions below for building your custom VIVO project with Maven. 
 
 ## Checking out the project and building VIVO in three tiers
 
