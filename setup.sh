@@ -1,5 +1,5 @@
 cd VIVO
-git checkout maint-rel-1.9
+git checkout rel-1.10.0-RC
 cd ../Vitro
-git checkout maint-rel-1.9
+git checkout rel-1.10.0-RC
 
