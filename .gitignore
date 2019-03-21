@@ -1,10 +1,7 @@
 # Config
 deploy.properties
 build.properties
-runtime.properties
 
-# local settings
-custom-vivo/settings.xml
 
 #Build dir
 .build/
