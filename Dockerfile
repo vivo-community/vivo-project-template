@@ -7,7 +7,7 @@ RUN mvn -s ../custom-vivo/settings.xml install
 FROM tomcat:jre11 AS vivo-tomcat
 RUN mkdir /usr/local/vivo
 RUN mkdir /usr/local/vivo/home
-RUN mkdir /usr/local/vivo/home/config
+COPY --from=build /usr/local/vivo/home /usr/local/vivo/home
 COPY --from=build /usr/src/vivo-template/VIVO/installer/webapp/target/vivo.war /usr/local/vivo
 COPY --from=build /usr/src/vivo-template/VIVO/installer/webapp/target/vivo.war /usr/local/tomcat/webapps/vivo.war
 COPY applicationSetup.n3 /usr/local/vivo/home/config
