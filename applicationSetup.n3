@@ -94,11 +94,11 @@
     a   <java:edu.cornell.mannlib.vitro.webapp.triplesource.impl.sdb.ContentTripleSourceSDB> ,
         <java:edu.cornell.mannlib.vitro.webapp.modules.tripleSource.ContentTripleSource> .
 
-#:tdbContentTripleSource
-#    a   <java:edu.cornell.mannlib.vitro.webapp.triplesource.impl.tdb.ContentTripleSourceTDB> ,
-#        <java:edu.cornell.mannlib.vitro.webapp.modules.tripleSource.ContentTripleSource> ;
-#    # May be an absolute path, or relative to the Vitro home directory.
-#    :hasTdbDirectory "tdbContentModels" .
+:tdbContentTripleSource
+    a   <java:edu.cornell.mannlib.vitro.webapp.triplesource.impl.tdb.ContentTripleSourceTDB> ,
+        <java:edu.cornell.mannlib.vitro.webapp.modules.tripleSource.ContentTripleSource> ;
+    # May be an absolute path, or relative to the Vitro home directory.
+    :hasTdbDirectory "tdbContentModels" .
 
 #:sparqlContentTripleSource
 #    a   <java:edu.cornell.mannlib.vitro.webapp.triplesource.impl.sparql.ContentTripleSourceSPARQL> ,
