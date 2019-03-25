@@ -1,0 +1,31 @@
+version: '3'
+services:
+  database:
+    build:
+      context: ./mariadb
+    image: mariadb-test
+    ports:
+     - 3306:3306
+    networks:
+      - vivonet
+  solr:
+    build: 
+      context: ./solr
+    image: solr-test
+    ports:
+     - 8983:8983
+    command: solr-create -c vivocore -d /opt/vivocore
+    networks:
+      - vivonet
+  vivo:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+      - solr
+    networks:
+      - vivonet
+networks:
+  vivonet:
+    driver: bridge
