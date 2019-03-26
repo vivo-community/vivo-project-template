@@ -24,8 +24,10 @@ services:
     depends_on:
       - database
       - solr
+    links:
+      - database
     networks:
       - vivonet
 networks:
   vivonet:
-    driver: bridge
+    driver: "bridge"
