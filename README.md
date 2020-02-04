@@ -41,6 +41,7 @@ VIVO uses [Maven](https://maven.apache.org/) for its build tool. Follow the dire
     mvn install -s custom-vivo/custom-settings.xml
     ~~~
 
+If you are installing VIVO v1.9.x or 1.10.x, you are finished. For later versions, you must install and configure Solr. See the [v1.11 installation instructions](https://wiki.lyrasis.org/display/VIVODOC111x/Installing+VIVO#InstallingVIVO-ConfigureandStartSolr) for additional details. 
 
 ### VIVO 1.8 and earlier
 Prior to December 2015, VIVO used ant to build the project. 
