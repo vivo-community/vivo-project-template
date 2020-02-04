@@ -46,10 +46,11 @@ If you are installing VIVO v1.9.x or 1.10.x, you are finished. For later version
 ### VIVO 1.8 and earlier
 Prior to December 2015, VIVO used ant to build the project. 
 
-1. Clone this template 
+1. Clone this template and revert to an ant-compatible template using git checkout
     ~~~
     git clone https://github.com/lawlesst/vivo-project-template.git vivo
     cd vivo
+    git checkout 2e02f3cc10e7fc7583b3273b4128dcfe6d43fc10
     git submodule init
     ~~~
 
