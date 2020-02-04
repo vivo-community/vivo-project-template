@@ -7,28 +7,128 @@
 
     <groupId>org.vivoweb</groupId>
     <artifactId>vivo-installer</artifactId>
-    <version>1.9.0-SNAPSHOT</version>
+    <version>1.11.0</version>
     <packaging>pom</packaging>
 
-    <name>custom VIVO installer</name>
+    <name>Custom VIVO Installer</name>
+
+    <properties>
+        <vitro-version>${project.version}</vitro-version>
+        <maven-site-plugin.skip>true</maven-site-plugin.skip>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.5.5</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.12.4</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <modules>
         <module>home</module>
-        <module>solr</module>
         <module>webapp</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vivo-home</artifactId>
+                <version>${vitro-version}</version>
+                <type>tar.gz</type>
+            </dependency>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vivo-api</artifactId>
+                <version>${vitro-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vivo-webapp</artifactId>
+                <version>${vitro-version}</version>
+                <type>war</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>
@@ -39,8 +139,13 @@
             <build>
                 <plugins>
                     <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                    <plugin>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.1</version>
                         <executions>
                             <execution>
                                 <id>default-compile</id>
@@ -51,6 +156,12 @@
                                 <phase />
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
@@ -68,7 +179,6 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.12.4</version>
                         <executions>
                             <execution>
                                 <id>test</id>
@@ -78,7 +188,6 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>2.6</version>
                         <executions>
                             <execution>
                                 <id>default-war</id>
@@ -98,7 +207,6 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-enforcer-plugin</artifactId>
-                        <version>1.4.1</version>
                         <executions>
                             <execution>
                                 <id>enforce-properties</id>
@@ -121,4 +229,48 @@
             </build>
         </profile>
     </profiles>
+
+    <distributionManagement>
+        <site>
+            <id>vivo-installer</id>
+            <url>http://vivo-project.github.io/</url>
+        </site>
+    </distributionManagement>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <!--
+        Add a custom repository, which is actually just a simple GitHub project
+        in order to distribute some dependencies that aren't part of Maven central
+    -->
+    <repositories>
+        <repository>
+            <id>vivo-dependencies</id>
+            <name>VIVO Dependencies</name>
+            <url>https://raw.github.com/vivo-project/dependencies/master/</url>
+        </repository>
+
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
